@@ -80,3 +80,6 @@ LOGIN_REDIRECT_URL = 'my_account'
 LOGOUT_REDIRECT_URL = 'home'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ALLOWED_HOSTS = ["best-it-academy.com", "www.best-it-academy.com", "38.19.198.186"]
+DEBUG = False
