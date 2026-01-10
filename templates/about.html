@@ -1,0 +1,631 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Despre Noi - Platformă Cursuri{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        border-radius: 0 0 50px 50px;
+    }
+
+    .about-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .about-content {
+        background: white;
+        padding: 3rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin: 3rem 0;
+        line-height: 1.8;
+    }
+
+    .about-content h2 {
+        color: var(--primary);
+        margin: 2rem 0 1rem;
+        font-size: 2rem;
+    }
+
+    .about-content p {
+        color: var(--secondary);
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: transform 0.3s;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary);
+        display: block;
+    }
+
+    .stat-label {
+        color: var(--secondary);
+        margin-top: 0.5rem;
+        font-weight: 600;
+    }
+
+    .values-section {
+        margin: 4rem 0;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .value-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        border-left: 4px solid var(--primary);
+    }
+
+    .value-icon {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+
+    .value-card h3 {
+        color: var(--dark);
+        margin-bottom: 0.75rem;
+    }
+
+    .value-card p {
+        color: var(--secondary);
+    }
+
+    @media (max-width: 768px) {
+        .about-hero h1 {
+            font-size: 2rem;
+        }
+        
+        .about-content {
+            padding: 1.5rem;
+        }
+    }
+
+    .mentors-section {
+    margin: 4rem 0;
+}
+
+.mentors-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.mentor-text h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.mentor-text h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--dark);
+}
+
+.mentor-text p {
+    color: var(--secondary);
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.mentor-text ul {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.mentor-text li {
+    margin-bottom: 0.5rem;
+    color: var(--secondary);
+}
+
+.mentor-style {
+    font-style: italic;
+    background: var(--light);
+    padding: 1rem;
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+}
+
+.mentor-invite {
+    font-weight: 600;
+    color: var(--dark);
+    margin-top: 1rem;
+}
+
+.mentor-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .mentors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mentor-text h2 {
+        font-size: 2rem;
+    }
+}
+
+.mentor-section {
+    margin: 4rem 0;
+}
+
+.mentor-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.mentor-content h2 {
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.mentor-content h3 {
+    margin-top: 2rem;
+    color: var(--dark);
+}
+
+.mentor-content p {
+    color: var(--secondary);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+}
+
+.mentor-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.mentor-list li {
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+    color: var(--secondary);
+}
+
+.mentor-image-2 img {
+    width: 100%;
+    height: 700px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .mentor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mentor-image {
+        order: -1;
+        text-align: center;
+    }
+    .mentor-image-2 img{
+        height: 100%;
+    }
+}
+
+.about-section {
+    padding: 4rem 2rem;
+    background: var(--light);
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    object-fit: cover;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    color: var(--dark);
+    margin-bottom: 0.25rem;
+}
+
+.about-content h4 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.about-text {
+    color: var(--secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.about-content ul {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: var(--secondary);
+}
+
+.about-content ul li {
+    margin-bottom: 0.5rem;
+}
+
+.about-motto {
+    margin-top: 2rem;
+    padding-left: 1rem;
+    border-left: 4px solid var(--primary);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .about-image {
+        order: 1;
+    }
+
+    .about-content {
+        order: 2;
+    }
+
+    .about-motto {
+        border-left: none;
+        border-top: 3px solid var(--primary);
+        padding-top: 1rem;
+    }
+}
+
+.mentor-section {
+    padding: 4rem 2rem;
+}
+
+.mentor-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.mentor-reverse {
+    direction: ltr;
+}
+
+.mentor-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.mentor-content h2 {
+    font-size: 2.4rem;
+    margin-bottom: 0.3rem;
+}
+
+.mentor-content h4 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.mentor-content p {
+    color: var(--secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.mentor-content ul {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: var(--secondary);
+}
+
+.mentor-content ul li {
+    margin-bottom: 0.4rem;
+}
+
+.mentor-content blockquote {
+    margin-top: 2rem;
+    padding-left: 1rem;
+    border-left: 4px solid var(--primary);
+    font-style: italic;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .mentor-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .mentor-image {
+        order: 1;
+    }
+
+    .mentor-content {
+        order: 2;
+    }
+
+    .mentor-content blockquote {
+        border-left: none;
+        border-top: 3px solid var(--primary);
+        padding-top: 1rem;
+    }
+}
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-hero">
+    <h1><i class="fas fa-info-circle"></i> Despre Noi</h1>
+</div>
+
+<div class="container">
+    <div class="about-content">
+        <h2>Misiunea Noastră</h2>
+        <p>
+            Suntem dedicați să oferim educație de calitate superioară prin intermediul platformei noastre 
+            moderne de e-learning. Credem că fiecare persoană merită acces la cunoștințe care să-i ajute 
+            să-și atingă obiectivele profesionale și personale.
+        </p>
+    </div>
+
+    <div class="mentors-section">
+    <div class="mentors-grid">
+        
+        <!-- TEXT STÂNGA -->
+        <div class="mentor-text">
+            <h2>Stefan Nistor</h2>
+            <p>
+                Sunt genul de mentor care nu vrea doar să-ți „dicteze comenzi”, 
+                ci să stea lângă tine (chiar și online 😊) până când Linux începe 
+                să aibă sens și să-ți placă.
+            </p>
+
+            <p>
+                Lucrez cu Linux, rețelistică, virtualizare și securitate și îmi place 
+                să iau concepte care par complicate și să le transform în pași simpli, 
+                logici și practici. În loc de teorie seacă, îți arăt exact ce să faci, 
+                unde să dai click, ce să scrii în terminal și mai ales de ce.
+            </p>
+
+            <h3>Ce vei învăța concret:</h3>
+            <ul>
+                <li> să ai propriul server acasă</li>
+                <li> propria găzduire chiar și fără IP public</li>
+                <li> acces sigur la rețeaua ta de oriunde din lume</li>
+            </ul>
+
+            <h3>Vom parcurge împreună:</h3>
+            <ul>
+                <li> Primii pași în Linux – instalare și utilizare zilnică</li>
+                <li> Terminalul explicat simplu și logic</li>
+                <li> Laborator acasă cu VirtualBox</li>
+                <li> Introducere în Proxmox</li>
+                <li> Mașini virtuale vs containere</li>
+                <li> Primii pași spre propriul tău homelab</li>
+            </ul>
+
+            <p class="mentor-style">
+                Stilul meu este relaxat, prietenos și orientat pe dialog. 
+                Întrebările, experimentele și chiar „stricatul” sistemului 
+                sunt încurajate – pentru că așa înveți cel mai bine.
+            </p>
+
+            <p class="mentor-invite">
+                Dacă vrei să înțelegi Linux și să-ți construiești propriul laborator 
+                virtual, te aștept să parcurgem drumul acesta împreună.
+            </p>
+        </div>
+
+        <!-- IMAGINE DREAPTA -->
+        <div class="mentor-image">
+            <!-- TU PUI IMAGINEA AICI -->
+            <img src="{% static 'img/stefan.jpeg' %}" alt="Mentor Linux">
+        </div>
+
+    </div>
+</div>
+
+<div class="mentors-section">
+    <div class="mentors-grid reverse">
+
+        <!-- IMAGINE STÂNGA -->
+        <div class="mentor-image-2">
+            <!-- TU ADAUGI IMAGINEA -->
+            <img src="{% static 'img/florin.jpeg' %}" alt="Florin Pantaza - Fondator">
+        </div>
+
+        <!-- TEXT DREAPTA -->
+        <div class="mentor-text">
+            <h2>Florin Pantaza</h2>
+            <h4>Fondator & Manager Platformă E-learning IT</h4>
+
+            <p>
+                Numele meu este <strong>Florin Pantaza</strong>, fondator și manager al acestei 
+                platforme de e-learning dedicate formării în IT de la zero. Am o experiență 
+                de peste <strong>25 de ani în domeniul IT</strong>, parcurs care a început odată 
+                cu finalizarea unui program de studii de 3 ani în Informatică.
+            </p>
+
+            <p>
+                De-a lungul timpului, am evoluat de la rolul de tehnician, la IT Trainer, 
+                iar în prezent activez ca <strong>IT Support 2nd Level</strong>, unde îmi aplic 
+                expertiza acumulată în special în <strong>Networking, Linux și CyberSecurity</strong>.
+            </p>
+
+            <p>
+                În acest moment coordonez două mentorate <strong>1-la-1</strong>, iar dorința mea 
+                este să duc acest proiect la nivelul următor. De aceea, am ales să mă înconjor 
+                de profesioniști foarte buni în domeniile lor, dar și excelenți pedagogi, pentru 
+                a vă oferi cea mai bună experiență de învățare.
+            </p>
+
+            <p>
+                Alături de mine, veți pătrunde în universul IT-ului, veți înțelege cum 
+                funcționează internetul și ce înseamnă cu adevărat o rețea de calculatoare, 
+                precum și metodele moderne de securizare a acesteia.
+            </p>
+
+            <p class="mentor-style">
+                Îți voi fi alături atât prin sesiuni individuale <strong>1-la-1</strong>, unde vom 
+                lucra în ritmul și la nivelul tău, cât și în sesiuni de grup, în care vom 
+                discuta întrebările voastre, vom rezolva probleme reale și vom învăța unii 
+                de la alții.
+            </p>
+
+            <p class="mentor-invite">
+                După fiecare întâlnire, vei pleca cu cunoștințe noi, consolidate și 
+                aplicabile imediat.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<div class="mentor-section">
+    <div class="mentor-grid">
+        
+        <!-- Text stânga -->
+        <div class="mentor-content">
+            <h2>Mentor – Răzvan-Ionuț Atomei</h2>
+
+            <p>
+                Mă numesc <strong>Răzvan-Ionuț Atomei</strong>, iar pasiunea mea pentru rețelistică a început
+                în anii 2000, când eu și câțiva prieteni voiam să jucăm Red Alert în rețea.
+                Am tras cabluri UTP între apartamente și am învățat din mers cum funcționează o rețea.
+                Atunci am înțeles cât de importante sunt conexiunile și câtă satisfacție îți poate aduce
+                construirea unui sistem funcțional.
+            </p>
+
+            <p>
+                De atunci am învățat continuu, prin proiecte practice și situații reale.
+                Azi îți pot explica simplu și clar cum funcționează rețelele, indiferent dacă începi de la zero.
+                Cred cu tărie că networking-ul nu este greu — are nevoie doar de explicațiile potrivite.
+            </p>
+
+            <h3>Ce vei învăța cu mine</h3>
+            <ul class="mentor-list">
+                <li>✔ Cum funcționează internetul (cabluri, wireless, UTP/FTP)</li>
+                <li>✔ VLAN – ce este, de ce îl folosim, Trunk vs Access</li>
+                <li>✔ STP – buclele din rețea și cum sunt prevenite</li>
+                <li>✔ Protocoale de rutare: RIP, OSPF, EIGRP (logic, nu formule)</li>
+                <li>✔ ACL-uri – permitere și blocare trafic</li>
+                <li>✔ Firewall – protecția rețelei, Inside / Outside</li>
+                <li>✔ Construirea primei tale mini-rețele</li>
+                <li>✔ Gândirea unui administrator de rețea</li>
+            </ul>
+        </div>
+
+        <!-- Imagine dreapta -->
+        <div class="mentor-image">
+            <!-- Tu vei pune imaginea -->
+            <img src="{% static 'img/razvan.jpeg' %}" alt="Mentor Networking">
+        </div>
+
+    </div>
+</div>
+
+<section class="mentor-section">
+    <div class="mentor-container mentor-reverse">
+
+        <!-- Imagine stânga -->
+        <div class="mentor-image">
+            <img src="{% static 'img/siko.png' %}" alt="Siko Norbert">
+        </div>
+
+        <!-- Text dreapta -->
+        <div class="mentor-content">
+            <h2>Siko Norbert</h2>
+            <h4>Despre mine</h4>
+
+            <p>
+                Educația mea a început pe profil <strong>Matematică–Informatică (real)</strong>,
+                unde am pus bazele gândirii logice și analitice.
+            </p>
+
+            <p>
+                Am urmat ulterior cursurile facultății cu specializarea
+                <strong>Tehnologia Construcțiilor de Mașini</strong>,
+                experiență care mi-a consolidat abordarea practică și structurată.
+            </p>
+
+            <p>
+                În paralel, m-am specializat în domeniul IT, obținând
+                <strong>3 certificări profesionale</strong>:
+            </p>
+
+            <ul>
+                <li>Software Development</li>
+                <li>QA Automation Tester</li>
+                <li>AI Prompt Engineering</li>
+            </ul>
+
+            <blockquote>
+                „Programarea se învață practicând conceptele asimilate!”
+            </blockquote>
+        </div>
+
+    </div>
+</section>
+
+</div>
+{% endblock %}

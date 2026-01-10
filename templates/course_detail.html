@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .course-page {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+}
+
+.video-section video {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.lesson-list {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.lesson-item {
+    padding: 0.75rem;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.lesson-item:hover {
+    background: #f1f5f9;
+}
+
+</style>
+
+<div class="course-page">
+
+    <!-- PLAYER -->
+    <div class="video-section">
+        <video id="lessonPlayer" controls controlsList="nodownload">
+            <source src="{{ active_lesson.video.url }}" type="video/mp4">
+        </video>
+
+        <h3 id="lessonTitle">{{ active_lesson.title }}</h3>
+
+        <button id="markCompleted" data-lesson="{{ active_lesson.id }}">
+            ✔ Marchează ca finalizat
+        </button>
+    </div>
+
+    <!-- LISTA LECȚII -->
+    <aside class="lesson-list">
+        {% for lesson in lessons %}
+        <div class="lesson-item"
+             data-video="{{ lesson.video.url }}"
+             data-title="{{ lesson.title }}"
+             data-id="{{ lesson.id }}">
+            {{ lesson.order }}. {{ lesson.title }}
+        </div>
+        {% endfor %}
+    </aside>
+
+</div>
+
+<script>
+const player = document.getElementById("lessonPlayer");
+const title = document.getElementById("lessonTitle");
+
+document.querySelectorAll(".lesson-item").forEach(item => {
+    item.addEventListener("click", () => {
+        player.src = item.dataset.video;
+        title.innerText = item.dataset.title;
+        player.play();
+    });
+});
+
+document.getElementById("markCompleted").addEventListener("click", () => {
+    fetch("{% url 'lesson_complete' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "lesson_id=" + document.getElementById("markCompleted").dataset.lesson
+    });
+});
+</script>
+
+{% endblock %}
