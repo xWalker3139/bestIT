@@ -11,6 +11,6 @@ urlpatterns = [
     path('termeni-si-conditii/', views.termeni_si_conditii, name='terms'),
     path('politica-cookies/', views.politica_de_cookie, name='cookies'),
     path('politica-confidentialitate/', views.politica_de_confidentialitate, name='privacy'),
-    path('curs/<int:course_id>/', views.course_detail, name='course_detail'),
+    path('course/<int:course_id>/', views.course_detail, name='course_detail'),
     path('lesson/complete/', views.mark_lesson_completed, name='lesson_complete'),
 ]

@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Course, Enrollment, Lesson
+from .models import Course, Enrollment, Lesson, LessonPR
 from .forms import ContactForm
+from django.http import JsonResponse
 
 def home(request):
     courses = Course.objects.filter(is_active=True)[:6]
@@ -65,38 +66,41 @@ def my_account(request):
 def course_detail(request, course_id):
     course = get_object_or_404(Course, id=course_id, is_active=True)
 
-    # verificăm dacă userul este înscris
     enrollment = Enrollment.objects.filter(
         user=request.user,
         course=course
     ).first()
 
     if not enrollment:
-        return render(request, 'courses/not_enrolled.html', {
+        return render(request, 'not_enrolled.html', {
             'course': course
         })
 
     lessons = course.lessons.all().order_by('order')
 
-    # prima lecție (default)
     active_lesson = lessons.first()
 
-    return render(request, 'courses/course_detail.html', {
+    completed_lessons = LessonPR.objects.filter(
+        user=request.user,
+        lesson__course=course,
+        completed=True
+    ).values_list('lesson_id', flat=True)
+
+    return render(request, 'course_detail.html', {
         'course': course,
         'lessons': lessons,
         'active_lesson': active_lesson,
-        'enrollment': enrollment
+        'completed_lessons': completed_lessons
     })
 
-from django.http import JsonResponse
-from .models import LessonProgress
 
 @login_required
 def mark_lesson_completed(request):
     lesson_id = request.POST.get('lesson_id')
-    lesson = Lesson.objects.get(id=lesson_id)
 
-    LessonProgress.objects.update_or_create(
+    lesson = get_object_or_404(Lesson, id=lesson_id)
+
+    Lesson.objects.update_or_create(
         user=request.user,
         lesson=lesson,
         defaults={'completed': True}

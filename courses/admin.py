@@ -4,7 +4,7 @@ from .models import Course, Enrollment, ContactMessage, Lesson
 class LessonInline(admin.TabularInline):
     model = Lesson
     extra = 1
-    fields = ('order', 'title', 'video', 'duration', 'is_free')
+    fields = ('order', 'title', 'video', 'suport_curs', 'duration', 'is_free')
     ordering = ('order',)
 
 @admin.register(Course)

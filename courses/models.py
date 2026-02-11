@@ -35,6 +35,14 @@ class Lesson(models.Model):
         upload_to='lessons/videos/',
         verbose_name="Video"
     )
+
+    suport_curs = models.FileField(
+        upload_to='lessons/curricula/',
+        verbose_name="Suport pentru curs",
+        blank=True,
+        null=True
+    )
+
     duration = models.CharField(max_length=20, verbose_name="Durată", blank=True)
     order = models.PositiveIntegerField(verbose_name="Ordine")
     is_free = models.BooleanField(default=False, verbose_name="Preview gratuit")
@@ -49,6 +57,13 @@ class Lesson(models.Model):
     def __str__(self):
         return f"{self.course.title} - {self.title}"
 
+class LessonPR(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ('user', 'lesson')
 
 class Enrollment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='enrollments', verbose_name="Utilizator")

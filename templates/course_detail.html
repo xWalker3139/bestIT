@@ -4,84 +4,223 @@
 {% block content %}
 
 <style>
-    .course-page {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: 2rem;
+.course-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
 }
 
-.video-section video {
+/* Video player */
+.video-wrapper {
+    background: #000;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.video-wrapper video {
     width: 100%;
-    border-radius: 12px;
+    max-height: 540px;
 }
 
+/* Titlu lecție */
+.current-lesson-title {
+    margin-top: 15px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+/* Container listă lecții */
+.lessons-container {
+    margin-top: 35px;
+}
+
+.lessons-container h4 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #1e293b;
+}
+
+/* Stil listă verticală */
 .lesson-list {
-    background: #fff;
-    border-radius: 12px;
-    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
+/* Card lecție */
 .lesson-item {
-    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+
+    background: #f8fafc;
     cursor: pointer;
-    border-bottom: 1px solid #eee;
+
+    transition: all 0.3s ease;
 }
 
 .lesson-item:hover {
-    background: #f1f5f9;
+    background: #eef2ff;
+    border-color: #c7d2fe;
 }
 
+.lesson-item.active {
+    background: #dbeafe;
+    border-color: #3b82f6;
+    font-weight: 600;
+}
+
+.lesson-item.completed {
+    background: #ecfdf5;
+    border-color: #10b981;
+}
+
+.lesson-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lesson-number {
+    background: #e2e8f0;
+    color: #0f172a;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.lesson-item.active .lesson-number {
+    background: #3b82f6;
+    color: white;
+}
+
+.lesson-status {
+    font-size: 18px;
+    color: #10b981;
+}
+
+/* Buton finalizare */
+.complete-btn {
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.complete-btn:hover {
+    background: #2563eb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .current-lesson-title {
+        font-size: 18px;
+    }
+}
 </style>
 
-<div class="course-page">
 
-    <!-- PLAYER -->
-    <div class="video-section">
-        <video id="lessonPlayer" controls controlsList="nodownload">
+<div class="course-container">
+
+    <h2 style="text-align: center; margin-bottom: 20px;">
+        {{ course.title }}
+    </h2>
+
+    <!-- VIDEO PLAYER -->
+    <div class="video-wrapper">
+        <video id="videoPlayer" controls controlsList="nodownload">
             <source src="{{ active_lesson.video.url }}" type="video/mp4">
         </video>
-
-        <h3 id="lessonTitle">{{ active_lesson.title }}</h3>
-
-        <button id="markCompleted" data-lesson="{{ active_lesson.id }}">
-            ✔ Marchează ca finalizat
-        </button>
     </div>
 
-    <!-- LISTA LECȚII -->
-    <aside class="lesson-list">
-        {% for lesson in lessons %}
-        <div class="lesson-item"
-             data-video="{{ lesson.video.url }}"
-             data-title="{{ lesson.title }}"
-             data-id="{{ lesson.id }}">
-            {{ lesson.order }}. {{ lesson.title }}
+
+    <!-- LISTA LECȚIILOR -->
+    <div class="lessons-container">
+
+        <h4>Lecții curs</h4>
+
+        <div class="lesson-list">
+            {% for lesson in lessons %}
+            <div class="lesson-item
+                {% if lesson.id == active_lesson.id %}active{% endif %}
+                {% if lesson.id in completed_lessons %}completed{% endif %}"
+                data-id="{{ lesson.id }}"
+                data-title="{{ lesson.title }}"
+                data-video="{{ lesson.video.url }}">
+
+                <div class="lesson-info">
+                    <span class="lesson-number">
+                        {{ lesson.order }}
+                    </span>
+
+                    <span>{{ lesson.title }}</span>
+                </div>
+
+                {% if lesson.id in completed_lessons %}
+                    <span class="lesson-status">✔</span>
+                {% endif %}
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </aside>
+
+    </div>
 
 </div>
 
+
 <script>
-const player = document.getElementById("lessonPlayer");
+const player = document.getElementById("videoPlayer");
 const title = document.getElementById("lessonTitle");
+const completeBtn = document.getElementById("completeBtn");
 
 document.querySelectorAll(".lesson-item").forEach(item => {
     item.addEventListener("click", () => {
+
+        document.querySelectorAll(".lesson-item")
+            .forEach(i => i.classList.remove("active"));
+
+        item.classList.add("active");
+
         player.src = item.dataset.video;
         title.innerText = item.dataset.title;
+
+        completeBtn.dataset.lesson = item.dataset.id;
+
         player.play();
     });
 });
 
-document.getElementById("markCompleted").addEventListener("click", () => {
+completeBtn.addEventListener("click", () => {
+
+    const lessonId = completeBtn.dataset.lesson;
+
     fetch("{% url 'lesson_complete' %}", {
         method: "POST",
         headers: {
             "X-CSRFToken": "{{ csrf_token }}",
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: "lesson_id=" + document.getElementById("markCompleted").dataset.lesson
+        body: "lesson_id=" + lessonId
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "ok") {
+
+            alert("Lecția a fost marcată ca finalizată!");
+
+            document.querySelector(
+                `.lesson-item[data-id='${lessonId}']`
+            ).classList.add("completed");
+        }
     });
 });
 </script>
