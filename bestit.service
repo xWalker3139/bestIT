@@ -1,0 +1,19 @@
+[Unit]
+Description=BestIT Django Application
+After=network.target
+
+[Service]
+Type=notify
+User=www
+Group=www
+WorkingDirectory=/www/wwwroot/best-it-academy.com
+Environment="PATH=/www/wwwroot/best-it-academy.com/venv/bin"
+ExecStart=/www/wwwroot/best-it-academy.com/venv/bin/gunicorn config.wsgi:application -c /www/wwwroot/best-it-academy.com/gunicorn_config.py
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
