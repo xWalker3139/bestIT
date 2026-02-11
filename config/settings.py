@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-this-in-production')
 DEBUG = config('DEBUG', default=True, cast=bool)
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -81,5 +81,5 @@ LOGOUT_REDIRECT_URL = 'home'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# ALLOWED_HOSTS = ["best-it-academy.com", "www.best-it-academy.com", "38.19.198.186"]
+ALLOWED_HOSTS = ["best-it-academy.com", "www.best-it-academy.com", "38.19.198.186"]
 DEBUG = True
