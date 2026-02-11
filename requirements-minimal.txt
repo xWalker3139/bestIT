@@ -1,0 +1,11 @@
+# Django Core Framework
+Django>=3.2,<5.0
+
+# Configuration Management
+python-decouple==3.8
+
+# Image/File Upload Support (ImageField in Course model)
+Pillow>=10.0.0
+
+# Production WSGI Server
+gunicorn==21.2.0
