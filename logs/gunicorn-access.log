@@ -37318,3 +37318,5 @@
 127.0.0.1 - - [19/Feb/2026:20:13:22 +0200] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 4389 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
 127.0.0.1 - - [19/Feb/2026:20:13:41 +0200] "GET /wp-admin/setup-config.php HTTP/1.1" 404 4359 "-" "https://best-it-academy.com/wp-admin/setup-config.php"
 127.0.0.1 - - [19/Feb/2026:20:16:58 +0200] "GET / HTTP/1.1" 200 11905 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 16_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/122.0.6261.89 Mobile/15E148 Safari/604"
+127.0.0.1 - - [19/Feb/2026:20:57:56 +0200] "GET / HTTP/1.1" 200 11793 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+127.0.0.1 - - [19/Feb/2026:20:57:57 +0200] "GET /favicon.ico HTTP/1.1" 404 4317 "https://best-it-academy.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
