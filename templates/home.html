@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Acasă - Best IT Academy{% endblock %}
 
@@ -25,33 +26,163 @@
         animation: fadeInUp 0.8s ease;
     }
 
-    .features {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin: 3rem 0;
+    /* ====== NEW: Course Cards (6 cards) ====== */
+    .course-showcase {
+        margin: 3.5rem 0 1rem;
     }
 
-    .feature-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    .course-showcase-header {
         text-align: center;
-        transition: transform 0.3s;
+        margin-bottom: 2rem;
     }
 
-    .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    .course-showcase-header h2 {
+        font-size: 2.4rem;
+        color: var(--dark);
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.02em;
     }
 
-    .feature-icon {
-        font-size: 3rem;
-        color: var(--primary);
-        margin-bottom: 1rem;
+    .course-showcase-header p {
+        color: var(--secondary);
+        max-width: 760px;
+        margin: 0 auto;
+        line-height: 1.65;
+        font-size: 1.05rem;
     }
 
+    .course-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 pe rand */
+        gap: 1.75rem;
+        margin-top: 2rem;
+    }
+
+    .course-mini-card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        transform: translateY(0);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .course-mini-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 45px rgba(0,0,0,0.12);
+        border-color: rgba(102, 126, 234, 0.25);
+    }
+
+    .course-mini-thumb {
+        height: 190px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(102,126,234,0.9), rgba(118,75,162,0.9));
+    }
+
+    .course-mini-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.02);
+        transition: transform 0.35s ease, filter 0.35s ease;
+        filter: saturate(1.05);
+    }
+
+    .course-mini-card:hover .course-mini-thumb img {
+        transform: scale(1.08);
+        filter: saturate(1.15);
+    }
+
+    .course-mini-badge {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        padding: 0.35rem 0.65rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #0f172a;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .course-mini-content {
+        padding: 1.25rem 1.25rem 1.1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        flex: 1;
+    }
+
+    .course-mini-title {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--dark);
+        margin: 0;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+    }
+
+    .course-mini-author {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--secondary);
+        font-size: 0.98rem;
+        margin: 0;
+    }
+
+    .course-mini-author i {
+        opacity: 0.85;
+    }
+
+    .course-mini-footer {
+        padding: 0 1.25rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+    }
+
+    .course-mini-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--secondary);
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .course-mini-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.65rem 0.95rem;
+        border-radius: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        border: 1px solid rgba(102,126,234,0.35);
+        color: #3b5bdb;
+        background: rgba(102,126,234,0.08);
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .course-mini-btn:hover {
+        transform: translateY(-1px);
+        background: rgba(102,126,234,0.14);
+        border-color: rgba(102,126,234,0.55);
+    }
+
+    /* ====== Existing Courses Section (optional, păstrat) ====== */
     .courses-section {
         margin: 4rem 0;
     }
@@ -114,6 +245,8 @@
         gap: 1rem;
         font-size: 0.9rem;
         color: var(--secondary);
+        align-items: center;
+        flex-wrap: wrap;
     }
 
     .badge {
@@ -140,6 +273,13 @@
         }
     }
 
+    /* ====== Responsive ====== */
+    @media (max-width: 1024px) {
+        .course-cards-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 pe rand */
+        }
+    }
+
     @media (max-width: 768px) {
         .hero h1 {
             font-size: 2rem;
@@ -152,6 +292,18 @@
         .section-title {
             font-size: 2rem;
         }
+
+        .course-showcase-header h2 {
+            font-size: 2rem;
+        }
+
+        .course-cards-grid {
+            grid-template-columns: 1fr; /* 1 pe rand */
+        }
+
+        .course-mini-thumb {
+            height: 180px;
+        }
     }
 </style>
 {% endblock %}
@@ -159,31 +311,122 @@
 {% block content %}
 <div class="hero">
     <h1><i class="fas fa-rocket"></i> Bun venit la Best IT Academy</h1>
-    <p>Învață skills noi și dezvoltă-ți cariera cu cursurile noastre profesionale</p>
+    <p>Învățăm IT pe bune, fără limbaj complicat, tu vii cu dorința, noi cu explicațiile.</p>
     {% if not user.is_authenticated %}
-    <a href="{% url 'contact' %}" class="btn btn-outline" style="color: white; border-color: white;">Contactează-ne</a>
+        <a href="{% url 'contact' %}" class="btn btn-outline" style="color: white; border-color: white;">Contactează-ne</a>
     {% endif %}
 </div>
 
 <div class="container">
-    <div class="features">
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-book-open"></i></div>
-            <h3>Cursuri de Calitate</h3>
-            <p>Acces la cursuri profesionale create de experți în domeniu</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-certificate"></i></div>
-            <h3>Certificare</h3>
-            <p>Obține certificate recunoscute la finalizarea cursurilor</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-users"></i></div>
-            <h3>Suport Dedicat</h3>
-            <p>Echipa noastră este mereu aici să te ajute</p>
-        </div>
-    </div>
 
+    <!-- ====== NEW: 6 Course Cards (Dummy Data) ====== -->
+    <section class="course-showcase">
+        <div class="course-showcase-header">
+            <h2>Cursurile noastre</h2>
+        </div>
+
+        <div class="course-cards-grid">
+
+            <!-- Card 1 -->
+            <article class="course-mini-card">
+                <div class="course-mini-thumb">
+                    <span class="course-mini-badge">Curs 1</span>
+                    <img src="https://images.unsplash.com/photo-1625838144804-300f3907c110?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Introducere in IT">
+                </div>
+                <div class="course-mini-content">
+                    <h3 class="course-mini-title">Introducere in IT</h3>
+                    <p class="course-mini-author"><i class="fas fa-user"></i> Mentor: Florin Pantază</p>
+                </div>
+                <div class="course-mini-footer">
+                    <div class="course-mini-meta"><i class="fas fa-file-pdf"></i> Material PDF</div>
+                    <a href="{% static 'pdfs/Structura_cursului.pdf' %}" class="course-mini-btn"><i class="fas fa-download"></i> Deschide PDF</a>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="course-mini-card">
+                <div class="course-mini-thumb">
+                    <span class="course-mini-badge">Curs 2</span>
+                    <img src="https://images.unsplash.com/photo-1640552435388-a54879e72b28?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Linux Servere">
+                </div>
+                <div class="course-mini-content">
+                    <h3 class="course-mini-title">Linux Servere</h3>
+                    <p class="course-mini-author"><i class="fas fa-user"></i> Mentor: Stefan Nistor</p>
+                </div>
+                <div class="course-mini-footer">
+                    <div class="course-mini-meta"><i class="fas fa-file-pdf"></i> Material PDF</div>
+                    <a href="{% static 'pdfs/Programa_Oficiala_Linux_LPI_Mentor_Stefan_Nistor.pdf' %}" class="course-mini-btn"><i class="fas fa-download"></i> Deschide PDF</a>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="course-mini-card">
+                <div class="course-mini-thumb">
+                    <span class="course-mini-badge">Curs 3</span>
+                    <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Networking și Securizarea Rețelelor">
+                </div>
+                <div class="course-mini-content">
+                    <h3 class="course-mini-title">Networking și Securizarea Rețelelor</h3>
+                    <p class="course-mini-author"><i class="fas fa-user"></i> Mentor: Razvan Ionut Atomei</p>
+                </div>
+                <div class="course-mini-footer">
+                    <div class="course-mini-meta"><i class="fas fa-file-pdf"></i> Material PDF</div>
+                    <a href="{% static 'pdfs/Retelistica_Atomei_Razvan-Ionut.pdf' %}" class="course-mini-btn"><i class="fas fa-download"></i> Deschide PDF</a>
+                </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="course-mini-card">
+                <div class="course-mini-thumb">
+                    <span class="course-mini-badge">Curs 4</span>
+                    <img src="https://images.unsplash.com/photo-1517650862521-d580d5348145?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Programare Java">
+                </div>
+                <div class="course-mini-content">
+                    <h3 class="course-mini-title">Programare cu Java</h3>
+                    <p class="course-mini-author"><i class="fas fa-user"></i> Mentor: Siko Norbert</p>
+                </div>
+                <div class="course-mini-footer">
+                    <div class="course-mini-meta"><i class="fas fa-file-pdf"></i> Material PDF</div>
+                    <a href="{% static 'pdfs/Java.pdf' %}" class="course-mini-btn"><i class="fas fa-download"></i> Deschide PDF</a>
+                </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="course-mini-card">
+                <div class="course-mini-thumb">
+                    <span class="course-mini-badge">Curs 5</span>
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Golang">
+                </div>
+                <div class="course-mini-content">
+                    <h3 class="course-mini-title">Programare cu Golang</h3>
+                    <p class="course-mini-author"><i class="fas fa-user"></i> Mentor: Matei</p>
+                </div>
+                <div class="course-mini-footer">
+                    <div class="course-mini-meta"><i class="fas fa-file-pdf"></i> Material PDF</div>
+                    <a href="{% static 'pdfs/Golang.pdf' %}" class="course-mini-btn"><i class="fas fa-download"></i> Deschide PDF</a>
+                </div>
+            </article>
+
+            <!-- Card 6 -->
+            <article class="course-mini-card">
+                <div class="course-mini-thumb">
+                    <span class="course-mini-badge">Curs 6</span>
+                    <img src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Web Development">
+                </div>
+                <div class="course-mini-content">
+                    <h3 class="course-mini-title">Fundamente de Web Development</h3>
+                    <p class="course-mini-author"><i class="fas fa-user"></i> Mentor: Theodor</p>
+                </div>
+                <div class="course-mini-footer">
+                    <div class="course-mini-meta"><i class="fas fa-file-pdf"></i> Material PDF</div>
+                    <a href="{% static 'pdfs/THEODOR-MASTERCLASS.pdf' %}" class="course-mini-btn"><i class="fas fa-download"></i> Deschide PDF</a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ====== (Optional) Existing dynamic courses section (păstrată) ====== -->
     {% if courses %}
     <div class="courses-section">
         <h2 class="section-title">Cursuri Populare</h2>
@@ -208,5 +451,6 @@
         </div>
     </div>
     {% endif %}
+
 </div>
 {% endblock %}
