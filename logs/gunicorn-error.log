@@ -463,3 +463,26 @@
 [2026-03-03 20:14:01 +0000] [1392407] [INFO] Booting worker with pid: 1392407
 [2026-03-03 20:14:01 +0000] [1392408] [INFO] Booting worker with pid: 1392408
 [2026-03-03 20:14:01 +0000] [1392409] [INFO] Booting worker with pid: 1392409
+[2026-03-03 20:51:46 +0000] [1392399] [INFO] Handling signal: term
+[2026-03-03 22:51:46 +0200] [1392403] [INFO] Worker exiting (pid: 1392403)
+[2026-03-03 22:51:46 +0200] [1392407] [INFO] Worker exiting (pid: 1392407)
+[2026-03-03 22:51:46 +0200] [1392405] [INFO] Worker exiting (pid: 1392405)
+[2026-03-03 22:51:46 +0200] [1392402] [INFO] Worker exiting (pid: 1392402)
+[2026-03-03 22:51:46 +0200] [1392401] [INFO] Worker exiting (pid: 1392401)
+[2026-03-03 22:51:46 +0200] [1392406] [INFO] Worker exiting (pid: 1392406)
+[2026-03-03 22:51:46 +0200] [1392404] [INFO] Worker exiting (pid: 1392404)
+[2026-03-03 22:51:46 +0200] [1392409] [INFO] Worker exiting (pid: 1392409)
+[2026-03-03 22:51:46 +0200] [1392408] [INFO] Worker exiting (pid: 1392408)
+[2026-03-03 20:51:46 +0000] [1392399] [INFO] Shutting down: Master
+[2026-03-03 20:51:47 +0000] [1393840] [INFO] Starting gunicorn 21.2.0
+[2026-03-03 20:51:47 +0000] [1393840] [INFO] Listening at: http://127.0.0.1:8001 (1393840)
+[2026-03-03 20:51:47 +0000] [1393840] [INFO] Using worker: sync
+[2026-03-03 20:51:47 +0000] [1393841] [INFO] Booting worker with pid: 1393841
+[2026-03-03 20:51:47 +0000] [1393842] [INFO] Booting worker with pid: 1393842
+[2026-03-03 20:51:47 +0000] [1393843] [INFO] Booting worker with pid: 1393843
+[2026-03-03 20:51:47 +0000] [1393844] [INFO] Booting worker with pid: 1393844
+[2026-03-03 20:51:47 +0000] [1393845] [INFO] Booting worker with pid: 1393845
+[2026-03-03 20:51:47 +0000] [1393846] [INFO] Booting worker with pid: 1393846
+[2026-03-03 20:51:47 +0000] [1393847] [INFO] Booting worker with pid: 1393847
+[2026-03-03 20:51:47 +0000] [1393848] [INFO] Booting worker with pid: 1393848
+[2026-03-03 20:51:47 +0000] [1393849] [INFO] Booting worker with pid: 1393849
