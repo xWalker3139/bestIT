@@ -13822,3 +13822,8 @@
 127.0.0.1 - - [20/Mar/2026:22:50:47 +0200] "GET / HTTP/1.1" 200 23388 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
 127.0.0.1 - - [20/Mar/2026:22:51:31 +0200] "GET / HTTP/1.1" 200 23388 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
 127.0.0.1 - - [20/Mar/2026:22:51:31 +0200] "GET /favicon.ico HTTP/1.1" 404 4317 "https://best-it-academy.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+127.0.0.1 - - [20/Mar/2026:22:52:59 +0200] "GET / HTTP/1.1" 200 23476 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+127.0.0.1 - - [20/Mar/2026:22:53:05 +0200] "GET /contact/ HTTP/1.1" 200 14276 "https://best-it-academy.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+127.0.0.1 - - [20/Mar/2026:22:53:12 +0200] "GET /actuator/gateway/routes HTTP/1.1" 400 58541 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+127.0.0.1 - - [20/Mar/2026:22:55:45 +0200] "GET / HTTP/1.1" 200 23476 "https://best-it-academy.com/contact/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+127.0.0.1 - - [20/Mar/2026:22:56:25 +0200] "GET /sitemap.xml.gz HTTP/1.1" 404 4330 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36"
