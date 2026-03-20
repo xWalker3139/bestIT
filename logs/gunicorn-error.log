@@ -245,3 +245,26 @@
 [2026-03-19 03:35:00 +0200] [1775510] [INFO] Autorestarting worker after current request.
 [2026-03-19 03:35:00 +0200] [1775510] [INFO] Worker exiting (pid: 1775510)
 [2026-03-19 01:35:00 +0000] [2212318] [INFO] Booting worker with pid: 2212318
+[2026-03-20 20:50:43 +0000] [1775508] [INFO] Handling signal: term
+[2026-03-20 22:50:43 +0200] [2076789] [INFO] Worker exiting (pid: 2076789)
+[2026-03-20 22:50:43 +0200] [2076758] [INFO] Worker exiting (pid: 2076758)
+[2026-03-20 22:50:43 +0200] [1987765] [INFO] Worker exiting (pid: 1987765)
+[2026-03-20 22:50:43 +0200] [2197447] [INFO] Worker exiting (pid: 2197447)
+[2026-03-20 22:50:43 +0200] [2155677] [INFO] Worker exiting (pid: 2155677)
+[2026-03-20 22:50:43 +0200] [2048001] [INFO] Worker exiting (pid: 2048001)
+[2026-03-20 22:50:43 +0200] [2212318] [INFO] Worker exiting (pid: 2212318)
+[2026-03-20 22:50:43 +0200] [2032847] [INFO] Worker exiting (pid: 2032847)
+[2026-03-20 22:50:43 +0200] [2094765] [INFO] Worker exiting (pid: 2094765)
+[2026-03-20 20:50:44 +0000] [1775508] [INFO] Shutting down: Master
+[2026-03-20 20:50:44 +0000] [2306531] [INFO] Starting gunicorn 21.2.0
+[2026-03-20 20:50:44 +0000] [2306531] [INFO] Listening at: http://127.0.0.1:8001 (2306531)
+[2026-03-20 20:50:44 +0000] [2306531] [INFO] Using worker: sync
+[2026-03-20 20:50:44 +0000] [2306533] [INFO] Booting worker with pid: 2306533
+[2026-03-20 20:50:44 +0000] [2306534] [INFO] Booting worker with pid: 2306534
+[2026-03-20 20:50:44 +0000] [2306535] [INFO] Booting worker with pid: 2306535
+[2026-03-20 20:50:44 +0000] [2306536] [INFO] Booting worker with pid: 2306536
+[2026-03-20 20:50:44 +0000] [2306537] [INFO] Booting worker with pid: 2306537
+[2026-03-20 20:50:44 +0000] [2306538] [INFO] Booting worker with pid: 2306538
+[2026-03-20 20:50:44 +0000] [2306539] [INFO] Booting worker with pid: 2306539
+[2026-03-20 20:50:44 +0000] [2306540] [INFO] Booting worker with pid: 2306540
+[2026-03-20 20:50:44 +0000] [2306541] [INFO] Booting worker with pid: 2306541
